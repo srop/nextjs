@@ -5,7 +5,13 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-
+import MailIcon from "@mui/icons-material/Mail";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import { Badge, Box, Menu, MenuItem } from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+import { useAppDispatch } from "@/store/store";
+import { userSelector, resetUsername, signUp, signOut } from "@/store/slices/userSlice";
+import { useSelector } from 'react-redux'
 const drawerWidth = 240;
 
 interface AppBarProps extends MuiAppBarProps {
@@ -36,6 +42,12 @@ type HeaderProp = {
 };
 
 export default function Header({ open, onDrawerOpen }: HeaderProp) {
+  const [showProfileMenu, setShowProfileMenu] = React.useState(false);
+  const dispatch = useAppDispatch();
+  const user = useSelector(userSelector);
+  const handleClose = () => {
+    setShowProfileMenu(false);
+  };
   return (
     <AppBar position="fixed" open={open}>
       <Toolbar>
@@ -54,6 +66,58 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
         <Typography variant="h6" noWrap component="div">
           Project Sample
         </Typography>
+        <Box sx={{ flexGrow: 1 }} />
+
+        <Box sx={{ display: { xs: "none", md: "flex" } }}>
+          <IconButton
+            size="large"
+            aria-label="show 4 new mails"
+            color="inherit"
+          >
+            <Badge badgeContent={4} color="error">
+              <MailIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
+            <Badge badgeContent={17} color="error">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="account of current user"
+            aria-haspopup="true"
+            onClick={() => setShowProfileMenu(!showProfileMenu)}
+            color="inherit"
+          >
+            <Typography variant="h6" noWrap component="div">
+           
+              {user.username}
+            </Typography>
+            <AccountCircle />
+          </IconButton>
+
+          <Menu
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            keepMounted
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+            open={showProfileMenu}
+            onClose={handleClose}
+          >
+            <MenuItem onClick={()=>dispatch(signOut())}>Logout</MenuItem>
+            <MenuItem onClick={handleClose}>My account</MenuItem>
+          </Menu>
+        </Box>
       </Toolbar>
     </AppBar>
   );

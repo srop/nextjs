@@ -5,6 +5,7 @@ export interface SignIn {
   token: string;
   error?: string;
   user: UserData;
+  username:string;
 }
 
 export interface SignUp {
