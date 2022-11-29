@@ -3,6 +3,6 @@ export interface UserData {
     firstname: string;
     lastname: string;
     email: string;
-    image: string;
+    image?: string;
     token?: string;
   }

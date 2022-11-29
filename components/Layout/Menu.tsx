@@ -17,6 +17,8 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ListItem from "@mui/material/ListItem";
 import Link from "next/link";
 import Collapse from "@mui/material/Collapse";
+import Image from "next/image";
+import logo from "@/public/static/images/NITMX-Logo.png"
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -146,6 +148,15 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
   return (
     <Drawer variant="permanent" open={open}>
       <DrawerHeader>
+        <Image
+          src={logo}
+          alt="Picture of the author"
+         
+          style={{
+            maxWidth: '150px',
+            height: 'auto',
+          }}
+        />
         <IconButton onClick={onDrawerClose}>
           {theme.direction === "rtl" ? (
             <ChevronRightIcon />
@@ -202,8 +213,8 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
               >
                 {item.subMenu?.map((isubMenu, subIndex) => {
                   return (
-                    <Link href={isubMenu.path}>
-                      <ListItem disablePadding key={subIndex}>
+                    <Link href={isubMenu.path} >
+                      <ListItem disablePadding key={isubMenu.text}>
                         <ListItemButton sx={{ pl: 5 }}>
                           <ListItemIcon>
                             {isubMenu.icon != null ? (
@@ -212,7 +223,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
                               <MenuIcon />
                             )}
                           </ListItemIcon>
-                          <ListItemText primary={isubMenu.text} />
+                          <ListItemText primary={isubMenu.text} key={isubMenu.text} />
                         </ListItemButton>
                       </ListItem>
                     </Link>

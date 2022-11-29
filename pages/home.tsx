@@ -5,11 +5,11 @@ import { userSelector, resetUsername, signUp } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/store/store";
 import withAuth from "@/components/withAuth";
 type Props = {};
-const Index = ({}: Props) => {
+const Home = ({}: Props) => {
   const user = useSelector(userSelector);
   const dispatch = useAppDispatch();
   //const useSelector = useSelector((store:any)=>store.user)
 
-  return <></>;
+  return <Layout>Home </Layout>;
 }
-export default withAuth(Index)
+export default withAuth(Home)
