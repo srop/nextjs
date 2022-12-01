@@ -88,9 +88,14 @@ const menuItems = [
     path: "/",
   },
   {
-    text: "Create Note",
+    text: "Home",
     icon: <InboxIcon color="secondary" />,
     path: "/home",
+  },
+  {
+    text: "Stock",
+    icon: <InboxIcon color="secondary" />,
+    path: "/stock",
   },
   {
     text: "Others",

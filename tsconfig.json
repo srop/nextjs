@@ -23,6 +23,7 @@
       "@/utils/*": ["utils/*"],
       "@/context/*": ["context/*"],
       "@/public/*": ["public/*"],
+      "@/src/*": ["src/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
