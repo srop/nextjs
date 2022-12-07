@@ -1,6 +1,7 @@
 import { createTheme } from '@mui/material/styles';;
 import { blue, red, green, cyan, grey } from '@mui/material/colors'
 let theme = createTheme({
+
   palette: {
     primary: {
       light: blue[400],
@@ -32,6 +33,14 @@ let theme = createTheme({
       contrastText: '#fff',
     }
   },
+  typography:{
+    fontFamily:'DB Heaven !important',
+    fontWeightLight:300,
+    fontWeightRegular:400,
+    fontWeightMedium:500,
+    fontWeightBold:700,
+     fontSize:16
+  }
 
 });
 

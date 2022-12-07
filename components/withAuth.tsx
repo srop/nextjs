@@ -6,7 +6,6 @@ import {
   isAuthenticatedSelector,
   isAuthenticatingSelector,
 } from "@/store/slices/userSlice";
-import { RootState } from "@/store/store";
 import { isClient } from "@/utils/commonUtil";
 
 // eslint-disable-next-line react/display-name

@@ -1,7 +1,12 @@
-import axios from 'axios'
+import axios from "axios";
 
 const httpClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BASE_URL_API
-})
-console.log(process.env.NEXT_PUBLIC_BASE_URL_API)
-export default httpClient
+  baseURL: process.env.BACKEND_API_URL,//"https://dummyjson.com/",
+  timeout: 10000,
+  headers: {
+    'Content-Type': 'application/json'
+  
+  }
+});
+console.log(process.env.BACKEND_API_URL);
+export default httpClient;

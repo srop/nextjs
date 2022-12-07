@@ -21,6 +21,7 @@ interface AppBarProps extends MuiAppBarProps {
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
+  backgroundColor:"white",
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
@@ -52,7 +53,7 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
     <AppBar position="fixed" open={open}>
       <Toolbar>
         <IconButton
-          color="inherit"
+          color="secondary"
           aria-label="open drawer"
           onClick={onDrawerOpen}
           edge="start"
@@ -63,38 +64,22 @@ export default function Header({ open, onDrawerOpen }: HeaderProp) {
         >
           <MenuIcon />
         </IconButton>
-        <Typography variant="h6" noWrap component="div">
+        <Typography variant="h6" noWrap component="div" color = "secondary">
           Project Sample
         </Typography>
         <Box sx={{ flexGrow: 1 }} />
 
         <Box sx={{ display: { xs: "none", md: "flex" } }}>
-          <IconButton
-            size="large"
-            aria-label="show 4 new mails"
-            color="inherit"
-          >
-            <Badge badgeContent={4} color="error">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <Badge badgeContent={17} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+         
+        
           <IconButton
             size="large"
             aria-label="account of current user"
             aria-haspopup="true"
             onClick={() => setShowProfileMenu(!showProfileMenu)}
-            color="inherit"
+            color="secondary"
           >
-            <Typography variant="h6" noWrap component="div">
+            <Typography variant="h6" noWrap component="div"  color = "secondary" >
            
               {user.username}
             </Typography>

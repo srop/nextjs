@@ -30,22 +30,22 @@ export const signUp = async (user: signProps): Promise<SignUp> => {
 //   return response;
 // };
 
-export const signIn = async (user: signProps): Promise<SignIn> => {
+export const signIn1 = async (user: signProps): Promise<SignIn> => {
 
   const response = await httpClient.post<SignIn>(`/auth/login`, user, {
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL_LOCAL_API,
+    baseURL: process.env.LOCAL_API,
   });
   return response.data;
 };
-export const signOut = async () => {
+export const signOut1 = async () => {
   const response = await httpClient.get(`/auth/logout`,{
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL_LOCAL_API,
+    baseURL: process.env.LOCAL_API,
   });
   return response.data;
 }
-export const getSession = async ():Promise<GetSession> => {
+export const getSession1 = async ():Promise<GetSession> => {
   const response = await httpClient.get(`/auth/session`,{
-    baseURL: process.env.NEXT_PUBLIC_BASE_URL_LOCAL_API,
+    baseURL: process.env.LOCAL_API,
   });
   return response.data;
 }

@@ -1,9 +1,10 @@
 import Layout from "@/components/Layout/Layout";
 import React from "react";
 import { useSelector } from "react-redux";
-import { userSelector, resetUsername, signUp } from "@/store/slices/userSlice";
+import { userSelector, resetUsername } from "@/store/slices/userSlice";
 import { useAppDispatch } from "@/store/store";
 import withAuth from "@/components/withAuth";
+
 type Props = {};
 const Index = ({}: Props) => {
   const user = useSelector(userSelector);
