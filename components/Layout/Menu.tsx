@@ -19,6 +19,7 @@ import Link from "next/link";
 import Collapse from "@mui/material/Collapse";
 import Image from "next/image";
 import logo from "@/public/static/images/NITMX-Logo.png"
+import { PERMISSION_MAP } from "constant/permission";
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -28,6 +29,10 @@ const openedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.enteringScreen,
   }),
   overflowX: "hidden",
+  
+  background: "linear-gradient(180deg, rgba(56,116,237,1) 0%, rgba(48,81,148,1) 98%)",
+  color:"white",
+ 
 });
 
 const closedMixin = (theme: Theme): CSSObject => ({
@@ -36,6 +41,8 @@ const closedMixin = (theme: Theme): CSSObject => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
+  background: "linear-gradient(180deg, rgba(56,116,237,1) 0%, rgba(48,81,148,1) 98%)",
+  color:"white",
   width: `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(8)} + 1px)`,
@@ -58,6 +65,7 @@ const Drawer = styled(MuiDrawer, {
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
+
   ...(open && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
@@ -72,70 +80,15 @@ type MenuProp = {
   open: boolean;
   onDrawerClose: () => void;
 };
-export type MenuItem = {
-  text: string;
-  icon?: React.ComponentType;
-  path: string;
-  subMenu?: MenuItem[];
-  iconOpened?: any;
-  iconClosed?: any;
-};
-
-const menuItems = [
-  {
-    text: "My Notes",
-    icon: <MailIcon color="secondary" />,
-    path: "/",
-  },
-  {
-    text: "Home",
-    icon: <InboxIcon color="secondary" />,
-    path: "/home",
-  },
-  {
-    text: "Stock",
-    icon: <InboxIcon color="secondary" />,
-    path: "/stock",
-  },
-  {
-    text: "Others",
-    Icon: <MenuIcon color="secondary" />,
-    path: "#",
-    iconClosed: <ExpandLessIcon />,
-    iconOpened: <ExpandMoreIcon />,
-    subMenu: [
-      {
-        text: "Level 2",
-        path: "/level2",
-        icon: <InboxIcon color="secondary" />,
-      },
-      {
-        text: "Level 2",
-        path: "/level2",
-        icon: <InboxIcon color="secondary" />,
-      },
-    ],
-  },
-  {
-    text: "Setting",
-    Icon: <MenuIcon color="secondary" />,
-    path: "#",
-    iconClosed: <ExpandLessIcon />,
-    iconOpened: <ExpandMoreIcon />,
-    subMenu: [
-      {
-        text: "Level1112",
-        path: "/level211",
-        icon: <InboxIcon color="secondary" />,
-      },
-      {
-        text: "Level222",
-        path: "/level1112",
-        icon: <InboxIcon color="secondary" />,
-      },
-    ],
-  },
-];
+// export type MenuItem = {
+//   text: string;
+//   icon?: React.ComponentType;
+//   path: string;
+//   subMenu?: MenuItem[];
+//   iconOpened?: any;
+//   iconClosed?: any;
+// };
+const menuItems = PERMISSION_MAP
 
 export default function Menu({ open, onDrawerClose }: MenuProp) {
   const theme = useTheme();
@@ -152,7 +105,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
 
   return (
     <Drawer variant="permanent" open={open}>
-      <DrawerHeader>
+      <DrawerHeader  style={{backgroundColor:"white"}}> 
         <Image
           src={logo}
           alt="Picture of the author"
@@ -171,7 +124,7 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
         </IconButton>
       </DrawerHeader>
       <Divider />
-      <List>
+      <List >
         {menuItems.map((item, index) => (
           <Link href={item.path}>
             <ListItem key={index} disablePadding sx={{ display: "block" }}>
@@ -193,10 +146,11 @@ export default function Menu({ open, onDrawerClose }: MenuProp) {
                     justifyContent: "center",
                   }}
                 >
-                  {item.icon != null ? item.icon : <MenuIcon />}
+                  {item.icon != null ? item.icon : <MenuIcon style={{color:"white"}} />}
                 </ListItemIcon>
 
                 <ListItemText
+                 primaryTypographyProps={{fontSize: '1.2rem'}} 
                   primary={item.text}
                   sx={{ opacity: open ? 1 : 0 }}
                 />

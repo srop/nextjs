@@ -26,15 +26,15 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 export default function Layout(props:any) {
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Header open={open} onDrawerOpen={() => setOpen(true)} />
-      <div style={{display:"flex",flexDirection: "row" }}>
+      <div style={{display:"flex",flexDirection: "row",width:"100%" ,height:"100vh",backgroundColor:"#F4F7FC"}}>
       <Menu open={open} onDrawerClose={() => setOpen(false)} />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }} style = {{ }}>
         <DrawerHeader />
         {props.children}
       </Box>

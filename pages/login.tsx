@@ -13,7 +13,7 @@ import { Formik, Form, Field, FormikProps } from "formik";
 import Router, { useRouter } from "next/router";
 import { Box } from "@mui/material";
 import { useAppDispatch } from "@/store/store";
-import { signIn } from "@/store/slices/userSlice";
+import { signIn,getProfile } from "@/store/slices/userSlice";
 import withAuth from "@/components/withAuth"
 type Props = {};
 const Login = ({}: Props) => {
@@ -37,8 +37,9 @@ const Login = ({}: Props) => {
           margin="normal"
           required
           fullWidth
+        
           label="Username"
-          autoComplete="email"
+          autoComplete="username"
           autoFocus
         />
         <Field
@@ -50,6 +51,7 @@ const Login = ({}: Props) => {
           label="Password"
           type="password"
           id="password"
+        
           autoComplete="current-password"
         />
 
@@ -87,13 +89,15 @@ const Login = ({}: Props) => {
           />
           <CardContent>
             <Formik
-              initialValues={{ username: "", password: "" }}
+              initialValues={{ username: "kminchelle", password: "0lelplR" }}
               onSubmit={async (values) => {
                 const response = await dispatch(signIn(values));
+
                 console.log("page login :",response)
                 if (response.meta.requestStatus === "rejected") {
                   alert("Login failed");
                 } else {
+                  dispatch(getProfile());
                   router.push("/home");
                 }
               }}
@@ -120,4 +124,4 @@ const Login = ({}: Props) => {
   );
 };
 
-export default withAuth(Login);
+export default (Login);
